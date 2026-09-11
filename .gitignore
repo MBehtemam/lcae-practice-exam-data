@@ -1,0 +1,7 @@
+# Never commit your LangSmith key
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc

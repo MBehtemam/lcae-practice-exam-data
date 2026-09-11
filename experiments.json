@@ -1,0 +1,345 @@
+{
+  "dataset_name": "support-faq-eval",
+  "examples": [
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000001",
+      "inputs": {
+        "question": "How do I reset my password?"
+      },
+      "outputs": {
+        "answer": "Go to Settings > Security > Reset Password and follow the emailed link."
+      }
+    },
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000002",
+      "inputs": {
+        "question": "What are your support hours?"
+      },
+      "outputs": {
+        "answer": "Our support team is available Monday-Friday, 9am-6pm ET."
+      }
+    },
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000003",
+      "inputs": {
+        "question": "Can I get a refund after 30 days?"
+      },
+      "outputs": {
+        "answer": "Refunds are only available within the first 14 days of purchase."
+      }
+    },
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000004",
+      "inputs": {
+        "question": "How do I cancel my subscription?"
+      },
+      "outputs": {
+        "answer": "Go to Billing > Manage Plan > Cancel Subscription."
+      }
+    },
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000005",
+      "inputs": {
+        "question": "Do you offer a free trial?"
+      },
+      "outputs": {
+        "answer": "Yes, we offer a 14-day free trial with no credit card required."
+      }
+    },
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000006",
+      "inputs": {
+        "question": "Is my data encrypted at rest?"
+      },
+      "outputs": {
+        "answer": "Yes, all customer data is encrypted at rest using AES-256."
+      }
+    },
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000007",
+      "inputs": {
+        "question": "How do I add a teammate to my workspace?"
+      },
+      "outputs": {
+        "answer": "Go to Workspace > Members > Invite, then enter their email."
+      }
+    },
+    {
+      "id": "e1a1c1a0-0001-4a11-9c11-000000000008",
+      "inputs": {
+        "question": "What happens to my data if I downgrade my plan?"
+      },
+      "outputs": {
+        "answer": "Your data is retained for 30 days after downgrading, then archived."
+      }
+    }
+  ],
+  "experiments": [
+    {
+      "name": "support-agent-v1-baseline",
+      "runs": [
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000001",
+          "inputs": {
+            "question": "How do I reset my password?"
+          },
+          "outputs": {
+            "answer": "Go to Settings > Security > Reset Password and follow the emailed link."
+          },
+          "duration_seconds": 0.8,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000002",
+          "inputs": {
+            "question": "What are your support hours?"
+          },
+          "outputs": {
+            "answer": "Our support team is available Monday-Friday, 9am-6pm ET."
+          },
+          "duration_seconds": 0.9,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000003",
+          "inputs": {
+            "question": "Can I get a refund after 30 days?"
+          },
+          "outputs": {
+            "answer": "..."
+          },
+          "duration_seconds": 1.0,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000004",
+          "inputs": {
+            "question": "How do I cancel my subscription?"
+          },
+          "outputs": {
+            "answer": "Go to Billing > Manage Plan > Cancel Subscription."
+          },
+          "duration_seconds": 1.1,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000005",
+          "inputs": {
+            "question": "Do you offer a free trial?"
+          },
+          "outputs": {
+            "answer": "Yes, we offer a 14-day free trial with no credit card required."
+          },
+          "duration_seconds": 1.2,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000006",
+          "inputs": {
+            "question": "Is my data encrypted at rest?"
+          },
+          "outputs": {
+            "answer": "..."
+          },
+          "duration_seconds": 1.3,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000007",
+          "inputs": {
+            "question": "How do I add a teammate to my workspace?"
+          },
+          "outputs": {
+            "answer": "Go to Workspace > Members > Invite, then enter their email."
+          },
+          "duration_seconds": 1.4,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000008",
+          "inputs": {
+            "question": "What happens to my data if I downgrade my plan?"
+          },
+          "outputs": {
+            "answer": "..."
+          },
+          "duration_seconds": 5.0,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "support-agent-v2-concise",
+      "runs": [
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000001",
+          "inputs": {
+            "question": "How do I reset my password?"
+          },
+          "outputs": {
+            "answer": "Go to Settings > Security > Reset Password and follow the emailed link."
+          },
+          "duration_seconds": 1.8,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000002",
+          "inputs": {
+            "question": "What are your support hours?"
+          },
+          "outputs": {
+            "answer": "..."
+          },
+          "duration_seconds": 1.9,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000003",
+          "inputs": {
+            "question": "Can I get a refund after 30 days?"
+          },
+          "outputs": {
+            "answer": "Refunds are only available within the first 14 days of purchase."
+          },
+          "duration_seconds": 2.0,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000004",
+          "inputs": {
+            "question": "How do I cancel my subscription?"
+          },
+          "outputs": {
+            "answer": "Go to Billing > Manage Plan > Cancel Subscription."
+          },
+          "duration_seconds": 2.1,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000005",
+          "inputs": {
+            "question": "Do you offer a free trial?"
+          },
+          "outputs": {
+            "answer": "Yes, we offer a 14-day free trial with no credit card required."
+          },
+          "duration_seconds": 2.2,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000006",
+          "inputs": {
+            "question": "Is my data encrypted at rest?"
+          },
+          "outputs": {
+            "answer": "Yes, all customer data is encrypted at rest using AES-256."
+          },
+          "duration_seconds": 2.3,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000007",
+          "inputs": {
+            "question": "How do I add a teammate to my workspace?"
+          },
+          "outputs": {
+            "answer": "Go to Workspace > Members > Invite, then enter their email."
+          },
+          "duration_seconds": 2.4,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "reference_example_id": "e1a1c1a0-0001-4a11-9c11-000000000008",
+          "inputs": {
+            "question": "What happens to my data if I downgrade my plan?"
+          },
+          "outputs": {
+            "answer": "Your data is retained for 30 days after downgrading, then archived."
+          },
+          "duration_seconds": 2.5,
+          "feedback": [
+            {
+              "key": "correctness",
+              "score": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
