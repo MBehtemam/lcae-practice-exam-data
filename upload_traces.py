@@ -6,6 +6,7 @@ LLM or regenerates anything) and uploads it via langsmith.Client. See README.md 
 
 import json
 import os
+import sys
 import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -73,6 +74,13 @@ def main() -> None:
     traces = data["traces"]
 
     client = Client()
+
+    # create_run auto-creates the project, so a second upload would silently append a duplicate
+    # copy of every trace and skew the counts the practice questions ask about. Stop instead.
+    if client.has_project(project_name=project_name):
+        print(f"Project '{project_name}' already exists in this workspace.")
+        print("Run `uv run python reset.py` first, then re-run this script.")
+        sys.exit(1)
     now = datetime.now(timezone.utc)
     pending_feedback: list[tuple[str, dict]] = []
 

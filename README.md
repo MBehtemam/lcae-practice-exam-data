@@ -68,12 +68,21 @@ uv sync
 
 ### 4. Upload the data
 
+Always run all three scripts, in this exact order — every time, including your very first upload:
+
 ```sh
+uv run python reset.py
 uv run python upload_traces.py
 uv run python upload_experiments.py
 ```
 
-Each script prints a LangSmith URL when it finishes. Open them to confirm the data arrived.
+`reset.py` clears anything left over from a previous attempt, so the two uploads start from a
+clean workspace. On a first run it just reports that there is nothing to delete — that is normal,
+not an error.
+
+Order matters: `upload_traces.py` must finish before `upload_experiments.py` starts.
+
+Each upload script prints a LangSmith URL when it finishes. Open them to confirm the data arrived.
 
 ### 5. Check it worked
 
@@ -106,17 +115,14 @@ passed, reset and re-upload using the next section.
 
 ## Retaking a test, or re-running the upload
 
-The upload scripts **only add data — they never overwrite or de-duplicate.** Running them a second
-time stacks a fresh copy on top of what's already there, which doubles the counts the questions
-measure and makes the answers wrong.
+Run the same three commands from step 4 again — `reset.py`, then `upload_traces.py`, then
+`upload_experiments.py`. There is no separate procedure for a repeat attempt.
 
-Always reset first:
-
-```sh
-uv run python reset.py
-uv run python upload_traces.py
-uv run python upload_experiments.py
-```
+This is why the reset is not optional: the upload scripts **only add data — they never overwrite
+or de-duplicate.** Uploading twice would stack a fresh copy on top of what's already there,
+doubling the counts the questions measure and making the answers wrong. Both scripts now refuse to
+run when their data is already present and tell you to reset, so you can't hit this by accident —
+but resetting first is still the habit to keep.
 
 `reset.py` deletes the `lcae-udemy-practice` project, the `support-faq-eval` dataset, and its two
 experiment projects — everything these scripts create, and nothing else in your workspace.
@@ -157,6 +163,9 @@ their **Feedback** tab directly.
 **`LANGSMITH_API_KEY` errors** — check `.env` sits in the repo root, the key has no surrounding
 quotes, and you copied the whole value.
 
+**"Already exists in this workspace" / `409 Conflict`** — the data from a previous attempt is
+still there. Run the full three-command sequence from step 4, starting with `reset.py`.
+
 **Numbers look doubled** — you uploaded twice without resetting. Run `reset.py`, then upload again.
 
 **Charts are empty** — either the upload hasn't run, or too much time has passed since it did. See
@@ -170,7 +179,7 @@ the timing table above.
 
 - `upload_traces.py` — uploads the traces, feedback, errors, latency, and token usage
 - `upload_experiments.py` — creates the `support-faq-eval` dataset and its two experiments
-- `reset.py` — deletes everything the two upload scripts create
+- `reset.py` — deletes everything the two upload scripts create; run it first, every time
 - `traces.json`, `experiments.json` — the fixed, pre-generated data both scripts replay
 
 Neither upload script calls an LLM or generates anything new — they replay static files, so the

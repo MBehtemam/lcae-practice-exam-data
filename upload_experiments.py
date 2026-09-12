@@ -7,6 +7,7 @@ dataset plus its two compared experiments via langsmith.Client. See README.md fo
 
 import json
 import os
+import sys
 import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -58,6 +59,16 @@ def main() -> None:
 
     client = Client()
     now = datetime.now(timezone.utc)
+
+    # Without this the create_dataset below raises a raw 409 traceback, and the example ids in
+    # experiments.json are fixed, so there is no safe way to merge into an existing dataset.
+    existing = [dataset_name] if list(client.list_datasets(dataset_name=dataset_name)) else []
+    existing += [e["name"] for e in data["experiments"]
+                 if client.has_project(project_name=e["name"])]
+    if existing:
+        print("Already present in this workspace: " + ", ".join(f"'{n}'" for n in existing))
+        print("Run `uv run python reset.py` first, then re-run this script.")
+        sys.exit(1)
 
     dataset = client.create_dataset(dataset_name=dataset_name)
     client.create_examples(
