@@ -11,9 +11,10 @@ The data is identical for everyone who runs it unmodified, so every question has
 answer.
 
 **Prefer to watch?** A short silent walkthrough of the whole setup (clone, create an API key, add it
-to `.env`, upload, and check LangSmith) is here:
-[**docs/setup-tutorial.mp4**](docs/setup-tutorial.mp4) (about 68 seconds). The written steps below
-are the same.
+to `.env`, upload, and check LangSmith), about 68 seconds. Click the picture to play it. The written
+steps below are the same.
+
+[![Watch the setup walkthrough](docs/setup-tutorial-thumb.jpg)](docs/setup-tutorial.mp4)
 
 ---
 
