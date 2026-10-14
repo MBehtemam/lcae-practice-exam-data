@@ -10,6 +10,11 @@ so those questions have a real dashboard to read.
 The data is identical for everyone who runs it unmodified, so every question has one correct
 answer.
 
+**Prefer to watch?** A short silent walkthrough of the whole setup (clone, create an API key, add it
+to `.env`, upload, and check LangSmith) is here:
+[**docs/setup-tutorial.mp4**](docs/setup-tutorial.mp4) (about 68 seconds). The written steps below
+are the same.
+
 ---
 
 ## Before you start
@@ -165,6 +170,11 @@ quotes, and you copied the whole value.
 
 **"Already exists in this workspace" / `409 Conflict`** — the data from a previous attempt is
 still there. Run the full three-command sequence from step 4, starting with `reset.py`.
+
+**`409 Conflict ... dataset id does not match example's dataset id`** — fixed. Older versions of
+`upload_experiments.py` reused fixed example ids, which can already belong to a dataset elsewhere
+in LangSmith. The script now mints fresh example ids on every upload. If you still see this, run
+`git pull` and try again.
 
 **Numbers look doubled** — you uploaded twice without resetting. Run `reset.py`, then upload again.
 
